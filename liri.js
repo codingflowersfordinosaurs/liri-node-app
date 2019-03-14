@@ -74,15 +74,18 @@ function showMovie(userPick) {
 
   request(queryUrl, function(error, response, body) {
     if (!error && response.statusCode === 200) {
+      var movieObject = JSON.parse(body);
       console.log("∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆");
-      console.log("Title: " + JSON.parse(body).Title);
-      console.log("Release Year: " + JSON.parse(body).Year);
-      console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-      console.log("Rotton Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
-      console.log("Country Produced: " + JSON.parse(body).Country);
-      console.log("Plot: " + JSON.parse(body).Plot);
-      console.log("Actors: " + JSON.parse(body).Actors);
+      console.log("Title: " + movieObject.Title);
+      console.log("Release Year: " + movieObject.Year);
+      console.log("IMDB Rating: " + movieObject.imdbRating);
+      console.log("Rotton Tomatoes Rating: " + movieObject.Ratings[1].Value);
+      console.log("Country Produced: " + movieObject.Country);
+      console.log("Plot: " + movieObject.Plot);
+      console.log("Actors: " + movieObject.Actors);
       console.log("∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆");
+    } else {
+      console.log("An error occurred");
     }
   });
 
@@ -92,7 +95,7 @@ function doIt() {
   fs.readFile("random.txt", "UTF8", function(error, data) {
     
     if(error) {
-      console.log(error);
+      console.log("An error occured: " + error);
     }
     console.log(data);
 
@@ -113,3 +116,4 @@ function doIt() {
 
   });
 }
+doIt();
