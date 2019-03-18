@@ -13,8 +13,8 @@ var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 // need to to do process.argv[2] and process.argv[3]: because need user input and their pick of band/concert, song/artist, and movie pick
 // vars to get user inputs
-var userInputOpt = process.argv[2]; //og userInputs
-var userInputPar = process.argv[3]; //og userPick
+var userInputOpt = process.argv[2];
+var userInputPar = process.argv[3]; 
 
 userInputs(userInputOpt, userInputPar);
 // SWITCH: FOR COMMANDS AND FUNCTIONS
@@ -33,7 +33,7 @@ function userInputs(userInputOpt, userInputPar) {
       showMovie(userInputPar);
       break;
   
-    case "info-this":
+    case "do-what-it-says":
       showInfo();
       break;
     // need to put in a default if user does not input the correct case
@@ -82,7 +82,7 @@ function showSpotify(userInputPar) {
   // If user doesn't input an artist and song then this will be the one to show up
   if (!userInputPar) {
     // default song
-    userInputPar = "Cher Believe";
+    userInputPar = "Believe";
   }
   spotify.search({
     type: 'track',
@@ -194,4 +194,5 @@ function showInfo() {
 
   });
 }
-userInputs();
+// userInputs();
+
