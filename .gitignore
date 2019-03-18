@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 .env
+
+#  this will tell git NOT to track these files, and thus they won't be committed to Github
