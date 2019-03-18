@@ -13,3 +13,7 @@
 ## How to retrieve the data that will power the app
 - You will need to send request using the AXIOS package to the Bands in Town, Spotify, and OMDB APIs
 - - These Node packages are crucial for this project
+
+![concert](./images/concert-this.png);
+![dowhatitsays](./images/do-what-it-says.png);
+![movie](./images/movie-this.png");
