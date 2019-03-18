@@ -9,8 +9,8 @@ var fs = require("fs");
 // code required to import the keys.js file and store it in a variable
 var keys = require("./keys");
 // able to access the keys information like so:
-var spotify = new Spotify(keys.spotify);
 var Spotify = require("node-spotify-api");
+var spotify = new Spotify(keys.spotify);
 // need to to do process.argv[2] and process.argv[3]: because need user input and their pick of band/concert, song/artist, and movie pick
 // vars to get user inputs
 var userInputOpt = process.argv[2]; //og userInputs
@@ -33,7 +33,7 @@ function userInputs(userInputOpt, userInputPar) {
       showMovie(userInputPar);
       break;
   
-    case "do-what-it-says":
+    case "info-this":
       showInfo();
       break;
     // need to put in a default if user does not input the correct case
@@ -45,24 +45,24 @@ function userInputs(userInputOpt, userInputPar) {
 // FUNCTIONS
 // Bands in Town
 function showConcert(userInputPar) {
-  console.log(userPick);
+  // console.log(userInputPar);
   // need the url to bands in town
   var queryUrl = "https://rest.bandsintown.com/artists/" + userInputPar + "/events?app_id=codingbootcamp";
   request(queryUrl, function (err, response, body) {
     if (!err && response.statusCode === 200) {
       var concert = JSON.parse(body);
-      for (var i = 0; i < concerts.length; i++) {
+      for (var i = 0; i < concert.length; i++) {
         console.log("∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆");
         // this should append in the log.txt file
         fs.appendFile("log.txt", "∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆\n");
         console.log(i);
         fs.appendFile("log.txt", i + "\n");
-        console.log("Venue: " + concerts[i].venue.name);
-        fs.appendFile("log.txt", "Venue: " + concerts[i].venue.name + "\n");
-        console.log("Location: " + concrts[i].venue.city);
-        fs.appendFile("log.txt", "Location: " + concerts[i].venue.city + "\n");
-        console.log("Date: " + concerts[i].datetime);
-        fs.appendFile("log.txt", "Date: " + concerts[i].datetime + "\n");
+        console.log("Venue: " + concert[i].venue.name);
+        fs.appendFile("log.txt", "Venue: " + concert[i].venue.name + "\n");
+        console.log("Location: " + concrt[i].venue.city);
+        fs.appendFile("log.txt", "Location: " + concert[i].venue.city + "\n");
+        console.log("Date: " + concert[i].datetime);
+        fs.appendFile("log.txt", "Date: " + concert[i].datetime + "\n");
         console.log("∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆");
         fs.appendFile("log.txt", "∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆\n");
       }
@@ -82,7 +82,7 @@ function showSpotify(userInputPar) {
   // If user doesn't input an artist and song then this will be the one to show up
   if (!userInputPar) {
     // default song
-    userPick = "Cher Believe";
+    userInputPar = "Cher Believe";
   }
   spotify.search({
     type: 'track',
@@ -91,7 +91,6 @@ function showSpotify(userInputPar) {
     function (err, data) {
       if (err) {
         console.log("Error occurred: " + err);
-        return;
       }
       var music = data.tracks.items;
 
@@ -195,4 +194,4 @@ function showInfo() {
 
   });
 }
-showInfo();
+userInputs();
