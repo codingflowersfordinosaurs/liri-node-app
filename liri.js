@@ -174,7 +174,7 @@ function showInfo() {
     if (err) {
       console.log("An error occured: " + err);
     }
-    // console.log(data);
+   
 
     var dataArr = data.split(", ");
     userInputs(dataArr[0], dataArr[1]);
